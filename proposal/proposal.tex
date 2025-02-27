@@ -1,0 +1,125 @@
+%% The first command in your LaTeX source must be the \documentclass comand. This is the generic manuscript mode required for submission and peer review.
+%\documentclass[sigconf]{acmart} % two column
+\documentclass[manuscript,authorversion,nonacm]{acmart} % one column
+
+%\documentclass[sigconf,authorversion,nonacm]{acmart}
+
+%% To ensure 100% compatibility, please check the white list of
+%% approved LaTeX packages to be used with the Master Article Template at
+%% https://www.acm.org/publications/taps/whitelist-of-latex-packages
+
+% Packages here:
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[table]{xcolor}
+\usepackage{balance}
+\usepackage{soul}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{wrapfig}
+\usepackage{makecell}
+
+% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
+% \usepackage[normalem]{ulem}
+% \useunder{\uline}{\ul}{}
+
+% remove author addresses at bottom of title page
+\makeatletter
+\let\@authorsaddresses\@empty
+\makeatother
+
+% for block quotes
+\usepackage{etoolbox}
+% \AtBeginEnvironment{quote}{\par\singlespacing\small}
+
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+\settopmatter{printacmref=false}
+
+%%
+%% end of the preamble, start of the body of the document source.
+
+\begin{document}
+
+%%
+%% The ``title`` command has an optional parameter,
+%% allowing the author to define a ``short title`` to be used in page headers.
+\title[Proposal]{Proposal}
+
+%%
+%% The ``author`` command and its associated commands are used to define
+%% the authors and their affiliations.P
+
+\author{Victor Zhang}
+\author{Ellie Kogan}
+\author{Erin Mutchek}
+\author{Zheka Chyzhykova}
+\author{Michael Lee}
+\affiliation{%
+  \institution{CMPU 250}
+  \city{Spring 2025}
+  \country{Vassar College}
+}
+
+%% short names on header of each page
+\renewcommand{\shortauthors}{Short author names (just last names)}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Introduction}
+
+New test 
+
+This paragraph explains the motivation for the research questions related to this topic.
+
+This is an example in-line citation: Prior work argues that ... \cite{andalibi2017sensitive}. \newline
+
+This is an example of a citation with an author name: \citet{andalibi2017sensitive} argue that ... .
+
+
+%%%%%%%%%%%%%%%              %%%%%%%%%%%%%%%
+
+\subsection{Research Questions}
+
+In this project, we aim to explore the following research questions:
+
+\begin{itemize}
+    \item [\textbf{(RQ1)}] What is foo?
+    \item [\textbf{(RQ2)}] How is bar?
+    \item [\textbf{(RQ3)}] How much XYZ are there?
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Data Description}
+
+This is a description of the data your propose to use in your project. (Be sure your data is in your data folder in your project repo, as well.)
+
+\subsection{Description of what you expect to find} 
+
+This is a sketch of some analysis you plan to do with your data and what you expect to find.
+
+
+% bibliography
+\newpage
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{reference}
+
+
+% appendix (if necessary)
+\newpage 
+\appendix
+
+
+\end{document}
