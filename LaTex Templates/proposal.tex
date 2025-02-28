@@ -20,6 +20,8 @@
 \usepackage{enumitem}
 \usepackage{wrapfig}
 \usepackage{makecell}
+\usepackage{hyperref}   % Load hyperref first
+\usepackage{hyperxmp}   % Load hyperxmp second
 
 % Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
 % \usepackage[normalem]{ulem}
@@ -56,7 +58,11 @@
 %% The ``author`` command and its associated commands are used to define
 %% the authors and their affiliations.
 
-\author{Put your group names here (first and last)}
+\author{Victor Zhang}
+\author{Ellie Kogan}
+\author{Erin Mutchek}
+\author{Zheka Chyzhykova}
+\author{Michael Lee}
 \affiliation{%
   \institution{CMPU 250}
   \city{Spring 2025}
@@ -64,7 +70,7 @@
 }
 
 %% short names on header of each page
-\renewcommand{\shortauthors}{Short author names (just last names)}
+\renewcommand{\shortauthors}{Zhang, Kogan, Mutchek, Chyzhykova, Lee}
 
 \maketitle
 
@@ -73,25 +79,26 @@
 
 \section{Introduction}
 
-This paragraph introduces the topic of the proposal.
-
-This paragraph explains the motivation for the research questions related to this topic.
-
-This is an example in-line citation: Prior work argues that ... \cite{andalibi2017sensitive}. \newline
-
-This is an example of a citation with an author name: \citet{andalibi2017sensitive} argue that ... .
+Over the past several decades, affordable housing has decreased as rent has steadily increased and incomes have stagnated.\cite{localhousing2023} Home ownership has become increasingly more important as a means to build wealth, especially among Black Americans. Historically, Black homeowners have lower homeownership rates as a byproduct of racism and slavery and homes in black neighborhoods are significantly delayed. Additionally, Black Americans face discriminatory lending practices in the mortgage application process.\cite{brookings2023}
 
 
-%%%%%%%%%%%%%%%              %%%%%%%%%%%%%%%
+% This is an example in-line citation: Prior work argues that ... \cite{andalibi2017sensitive}. \newline
+
+% This is an example of a citation with an author name: \citet{andalibi2017sensitive} argue that ... .
+When purchasing a house with a mortgage, you first need to get pre-approved for a mortgage loan. During the pre-approval process, the applicants submit simple budget information and lenders use credit reports to determine the maximum amount they are willing to lend. After picking out a property, applicants need to submit more comprehensive employment, income, asset, debt, property, and credit history information.\cite{investopedia2023} Using this information, lenders choose to approve or deny applications creating a loan estimate in the process. Ultimately determining the final interest rates, hidden algorithms are used throughout the process to evaluate home prices and mortgage applications.\cite{mba2024}  During the application process, these algorithms are used to evaluate risk and predict loan repayment. Applicants who are falsely classified on risk or repayment may receive higher interest rates or less money or even get outright rejected, increasing financial burden and lessening financial mobility.
+
+
+In their August 2021 investigation, \textit{"The Secret Bias Hidden in Mortgage-Approval Algorithms,"} The Markup's Emmanuel Martinez and Lauren Kirchner analyzed over 2 million conventional mortgage applications from 2019. Their findings revealed that even after accounting for factors such as debt-to-income ratio, loan-to-value ratio, and credit score—elements lenders often cite to explain disparities—people of color were denied mortgages at significantly higher rates than White applicants. Nationally, Black applicants were 80\% more likely to be denied than their White counterparts with similar financial profiles; Native American applicants faced a 70\% higher denial rate, Asian/Pacific Islander applicants 50\% higher, and Latino applicants 40\% higher. In certain metropolitan areas, these disparities were even more pronounced, exceeding 250\%. The investigation highlighted that high-income Black applicants with less debt were denied more often than high-income White applicants with more debt, suggesting that algorithmic underwriting systems may perpetuate existing biases rather than eliminate them.%%%%%%%%%%%%%%%              %%%%%%%%%%%%%%%
 
 \subsection{Research Questions}
 
 In this project, we aim to explore the following research questions:
 
 \begin{itemize}
-    \item [\textbf{(RQ1)}] What is foo?
-    \item [\textbf{(RQ2)}] How is bar?
-    \item [\textbf{(RQ3)}] How much XYZ are there?
+  \item [\textbf{(RQ1)}] What are the potential impacts of the credit-scoring system algorithms on the approval rates of applicants of diverse identities and geographical backgrounds?
+  \item [\textbf{(RQ2)}] Do applicants of different race and gender backgrounds experience significantly different loan approval rates?
+  \item [\textbf{(RQ3)}] What disparities, if any, exist in the loan interest rates awarded to applicants of different race and gender backgrounds?
+  \item [\textbf{(RQ4)}] How can we create and assess a more fair credit-scoring model while still prioritizing accuracy?
 \end{itemize}
 
 
@@ -100,12 +107,33 @@ In this project, we aim to explore the following research questions:
 
 \section{Data Description}
 
-This is a description of the data your propose to use in your project. (Be sure your data is in your data folder in your project repo, as well.)
+The dataset used in this project outlines the circumstances under which Americans are approved for mortgages from private financial institutions. The collection of this data is mandated by the Home Mortgage Disclosure Act, a federal law passed in 1975 designed to hold banks accountable for declining capital in certain urban areas. In short, financial institutions are now required to report information about every application they process to the Consumer Financial Protection Bureau, which makes it publicly available each year in March. For the purpose of this project we'll be using application data from New York state in 2023. As we continue with preliminary analysis, we'll also choose a few rural, more homogenous counties for the purpose of comparison. Some of the key data points included in this set are the type of property being sought, a demographic description of the applicant(s), their income and credit score, and what loan terms they received. Also of interest is the applicant’s debt-to-income ratio, often entered as a range of percentages (e.g. 50%-60%). Financial institutions have defended that this data point, along with a couple others, is often the actual basis for rejections that may appear racially motivated. Therefore, it will be productive to control for this factor in examining decision outcomes.
 
-\subsection{Description of what you expect to find} 
+\subsection{Research Hypothesis} 
 
-This is a sketch of some analysis you plan to do with your data and what you expect to find.
+\textbf{Primary Hypothesis:} 
 
+Black mortgage applicants in New York State in 2023 face significantly higher denial rates compared to White applicants with similar financial profiles, even when controlling for debt-to-income ratio, loan-to-value ratio, and credit score.
+
+\textbf{Secondary Hypotheses:}
+
+\begin{itemize}
+    \item \textbf{SP1: Interest Rate Disparities:} Black, Latino, Native American, and Asian/Pacific Islander applicants receive significantly higher mortgage interest rates than White applicants with similar financial qualifications, suggesting bias in algorithmic risk assessment.
+    
+    \item \textbf{SP2: Geographic and Racial Lending Disparities:} Mortgage application denial rates are higher for Black applicants in urban areas with historically redlined neighborhoods compared to applicants in more racially homogenous, rural counties, despite similar financial profiles.
+    
+    \item \textbf{SP3: Gender and Race Intersectionality:} Black female mortgage applicants might experience disproportionately higher denial rates and less favorable loan terms compared to both Black male applicants and White female applicants, even when controlling for financial metrics.
+    
+    \item \textbf{SP4: Algorithmic Bias in Credit Scoring:} Algorithmic credit scoring models used in mortgage underwriting disproportionately classify minority applicants as high risk, leading to higher rejection rates or unfavorable loan terms despite comparable financial standing.
+\end{itemize}
+
+\subsection{Plan of Analysis}
+
+We will conduct analyses to address the research questions and explore potential biases in the loan approval process. First, we will compute and compare the loan approval rates for different racial groups. A Chi-square test will then be performed to evaluate whether any observed differences are statistically significant, helping us assess if race influences loan approval rates. We will also use a logistic regression model, controlling for financial factors (income, credit score, etc.), to estimate the effect of race on loan approval decisions. We will calculate the disparate impact ratio, comparing minority and White approval rates, and apply the EEOC's 80% rule to determine if potential discrimination exists. Our analysis will also include investigating whether non-race variables, such as ZIP code or income, act as proxies for race, potentially leading to indirect discrimination. This analysis will be an exploratory last step. We will create an algorithm trained on historical data to examine fairness in machine learning models and feed it synthetic data. We will use fairness metrics (FPR, FNR) across racial groups to evaluate any biases found across racial groups, and we will stimulate changing an applicant's race to assess whether the predicted loan approval would differ. Through this analysis, we will explore racial bias in existing loan-approval algorithms. By creating our algorithm, we will assess if training a fair and accurate model is possible based on the current data available. 
+
+\section{Work Agreement}
+
+As a group, we all agree that communication, transparency, and accountability are important to making sure we work well together. We'll keep in touch regularly through our group chat, where we can ask for help, share updates, and make sure everyone stays on track. Deadlines will be set and we'll do our best to stick to them, but if anyone has trouble meeting a deadline, we expect a 24-hour heads-up so we can figure it out together. We'll have a weekly check-in on Wednesdays at 3 in the library or a computer lab, and if we need extra time, we'll schedule it as we go. When it comes to getting work done, we'll divide tasks into smaller groups and check in with each other to make sure everyone has a chance to review and edit. We'll also make sure to comment on our code so everyone understands what's going on, and if we change someone else's work, we'll leave a note about what we did. We will practice pair programming when writing our code. 
 
 % bibliography
 \newpage

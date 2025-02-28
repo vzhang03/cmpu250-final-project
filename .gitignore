@@ -1,2 +1,10 @@
 # LaTex auxillary files
 *.gz
+*.out
+*.log
+*.fdb_latexmk
+*.aux
+*.fls
+*.bbl
+
+.DS_Store
